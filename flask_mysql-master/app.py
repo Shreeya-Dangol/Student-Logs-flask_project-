@@ -37,7 +37,7 @@ def index():
 
     d = cursor.fetchall()
     cursor.close()
-    #
+
     cursor1 = mysql.connection.cursor()
     cursor1.execute(
         "select * from passed_student")
@@ -51,14 +51,22 @@ def index():
 def insert():
     if request.method == "POST":
         flash("Inserted Successfully!")
+        id= request.form['id']
         name = request.form['name']
         email = request.form['email']
         score = request.form['score']
         phone = request.form['phone']
 
         cur = mysql.connection.cursor()
-        cur.execute("INSERT INTO student (name,email,score,phone) values (%s,%s,%s,%s)", (name, email, score, phone))
+        cur.execute("INSERT INTO student (id,name,email,score,phone) values (%s,%s,%s,%s)", (id, name, email, score, phone))
+        cur.close()
+
+        cur1 = mysql.connection.cursor()
+        cur1.execute(
+            "insert into passed_student(name,score,id) select name,score,id from student where score>32")
+
         mysql.connection.commit()
+        cur1.close()
         return redirect(url_for('index'))
 
 
