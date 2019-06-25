@@ -114,8 +114,12 @@
                                             <input type="text" class="from-control" name="email" value="{{ r.2 }}">
                                         </div>
                                         <div class="form-group">
+                                            <label>Score:</label>
+                                            <input type="text" class="from-control" name="score" value="{{ r.3 }}">
+                                        </div>
+                                        <div class="form-group">
                                             <label>Phone:</label>
-                                            <input type="text" class="from-control" name="phone" value="{{ r.3 }}">
+                                            <input type="text" class="from-control" name="phone" value="{{ r.4 }}">
                                         </div>
                                         <div class="form-group">
                                             <button class="btn btn-primary" type="submit">
@@ -190,12 +194,9 @@
         <h2>Passed Students</h2>
         <table class="table table-striped">
             <tr>
-                <th>P_ID</th>
+                <th>ID</th>
                 <th>Name</th>
                 <th>Score</th>
-                <!--<th>Phone</th>-->
-                <th>ID</th>
-                <!--<th>Action</th>-->
             </tr>
             {% for r in x %}
 
@@ -203,18 +204,22 @@
                 <td>{{r.0}}</td>
                 <td>{{r.1}}</td>
                 <td>{{r.2}}</td>
-                <td>{{r.3}}</td>
-                <!--<td>{{r.4}}</td>-->
-                <!--<td>
-                    <a href="/update/{{ r.0 }}" class="btn btn-warning btn-xs" data-toggle="modal"
-                       data-target="#modaledit{{ r.0 }}">
-                        Edit
-                    </a>
-                    <a href="/delete/{{ r.0 }}" class="btn btn-danger btn-xs"
-                       onclick="return confirm('Delete?')">
-                        Delete
-                    </a>
-                </td>-->
+            </tr>
+            {% endfor %}
+        </table>
+        <h2>Failed Students</h2>
+        <table class="table table-striped">
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Score</th>
+            </tr>
+            {% for r in f %}
+
+            <tr>
+                <td>{{r.0}}</td>
+                <td>{{r.1}}</td>
+                <td>{{r.2}}</td>
             </tr>
 
             {% endfor %}
